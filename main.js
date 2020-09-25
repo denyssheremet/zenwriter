@@ -1,24 +1,35 @@
 var myVar;
 var previousText = "";
 
-function printText() {
+function updateText() {
+    // updates the text that is visible in the divs below the input field
+
     document.getElementById("current-text").innerHTML = document.getElementById("input-field").value;
 
+    // stop previous timer and start a new one
     clearTimeout(myVar);
-    myVar = setTimeout(function () { clearCurrent(); }, 1000);
+    myVar = setTimeout(function () { clearCurrent(); }, 1000);  // game over if there is no new input in X milliseconds
 
 }
 
 function clearCurrent() {
-    // This method gets called when you've not written a letter in too long.
-    // It sets the score to zero and moves the text you've written into the backlog.
+    // sets the score to zero and moves the text you've written into the backlog
+
     alert("Time's up bitches!");
 
-    // Put text from current into previous
+    // put text from current into previous
     previousText += document.getElementById("input-field").value;
     document.getElementById("previous-text").innerHTML = previousText;
 
-    // Remove text from current field
+    // remove text from current field
     document.getElementById("input-field").value = "";
     document.getElementById("current-text").innerHTML = "";
+}
+
+function clearText() {
+    // this method removes all of the text that was written before.
+    previousText = "";
+    document.getElementById("input-field").value = "";
+    document.getElementById("current-text").innerHTML = "";
+    document.getElementById("previous-text").innerHTML = "";
 }
