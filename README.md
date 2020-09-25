@@ -14,6 +14,3 @@ Writer's block is quite common amongst people that want to write something. You 
 
 ## Try it out!
 Try it out if you are interested! I am very interested in whether you felt a noticable improvement in the way you write. Please let me know. I also recommend to have very low expectations for the first time you will write like this. For me it was difficult to make even one sentence that made sense and did not contain a myriad of spelling errors.
-
-## Patience
-Also don't have high expectations of the content that you will produce in the beginning. When I started out with this, I could barely manage to spell half the words in a sentence correctly. But have patience. It does get a lot better. You might be surprised at the rate of improvement that you will feel.
