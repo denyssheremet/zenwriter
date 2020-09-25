@@ -4,26 +4,37 @@ var previousText = "";
 function updateText() {
     // updates the text that is visible in the divs below the input field
 
-    document.getElementById("current-text").innerHTML = document.getElementById("input-field").value;
+    var currentArea = document.getElementById("current-text");
+    var previousArea = document.getElementById("previous-text");
+
+    currentArea.innerHTML = document.getElementById("input-field").value;
+
+    // scroll down
+    currentArea.scrollTop = currentArea.scrollHeight;;
+    previousArea.scrollTop = previousArea.scrollHeight;;
 
     // stop previous timer and start a new one
     clearTimeout(myVar);
-    myVar = setTimeout(function () { clearCurrent(); }, 1000);  // game over if there is no new input in X milliseconds
+    myVar = setTimeout(function () { clearCurrent(currentArea, previousArea); }, 1000);  // game over if there is no new input in X milliseconds
 
 }
 
-function clearCurrent() {
+function clearCurrent(currentArea, previousArea) {
     // sets the score to zero and moves the text you've written into the backlog
 
     alert("Time's up bitches!");
 
     // put text from current into previous
-    previousText += document.getElementById("input-field").value;
-    document.getElementById("previous-text").innerHTML = previousText;
+    var inputField = document.getElementById("input-field");
+    if (previousText != "") {
+        previousText += "\r____\r\r";
+    }
+    previousText += inputField.value;
+    previousArea.innerHTML = previousText;
 
     // remove text from current field
     document.getElementById("input-field").value = "";
-    document.getElementById("current-text").innerHTML = "";
+    currentArea.innerHTML = "";
 }
 
 function clearText() {
