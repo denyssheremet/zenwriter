@@ -7,6 +7,7 @@ This needs to be done for the first version of the ZenWriter app.
  - Show score
  - Show and save highscore (and text of highscore?)
  - Style
+ - Make text persist
 
 ## Additional features
  - Buttons:
