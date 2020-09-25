@@ -6,12 +6,12 @@ function updateText() {
 
     var currentArea = document.getElementById("current-text");
     var previousArea = document.getElementById("previous-text");
+    var allTextArea = document.getElementById("all-text");
 
     currentArea.innerHTML = document.getElementById("input-field").value;
 
     // scroll down
-    currentArea.scrollTop = currentArea.scrollHeight;;
-    previousArea.scrollTop = previousArea.scrollHeight;;
+    allTextArea.scrollTop = allTextArea.scrollHeight;;
 
     // stop previous timer and start a new one
     clearTimeout(myVar);
@@ -26,10 +26,9 @@ function clearCurrent(currentArea, previousArea) {
 
     // put text from current into previous
     var inputField = document.getElementById("input-field");
-    if (previousText != "") {
-        previousText += "\r____\r\r";
-    }
+
     previousText += inputField.value;
+    previousText += "\r____\r\r";
     previousArea.innerHTML = previousText;
 
     // remove text from current field

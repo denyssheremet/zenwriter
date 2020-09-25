@@ -9,14 +9,16 @@
     </h1>
     <div>
         <!-- <input id="input-field" onkeyup="updateText()" type="text" /> -->
-        <textarea id="input-field" onkeyup="updateText()" rows = "1" cols = "60" name = "description" ></textarea>
+        <textarea id="input-field" onkeyup="updateText()" rows="1" cols="60" name="description"></textarea>
     </div>
     <button onclick="clearText()">Clear text</button>
-    <div>
-        <textarea id="previous-text" rows = "5" cols = "60" disabled ></textarea>
-    </div>
-    <div>
-        <textarea id="current-text" rows = "5" cols = "60" disabled ></textarea>
+    <div id="all-text">
+        <div>
+            <div id="previous-text" disabled />
+        </div>
+        <div>
+            <div id="current-text" disabled />
+        </div>
     </div>
 </body>
 

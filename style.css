@@ -15,3 +15,9 @@
     color: grey;
     white-space: pre-wrap;
 }
+
+#all-text {
+    height: 300px;
+    border: solid;
+    overflow: scroll;
+}
