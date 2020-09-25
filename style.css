@@ -1,0 +1,17 @@
+
+
+#input-field {
+    color: grey;
+    overflow: auto;
+    resize: none;
+}
+
+#previous-text {
+    color: lightgrey;
+    white-space: pre-wrap;
+}
+
+#current-text {
+    color: grey;
+    white-space: pre-wrap;
+}
