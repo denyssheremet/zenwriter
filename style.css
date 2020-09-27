@@ -1,9 +1,15 @@
-
+* {
+    background-color: beige;
+    color: burlywood;
+    border-color: burlywood;
+    margin-left: 10px;
+}
 
 #input-field {
-    color: grey;
+    color: burlywood;
     overflow: auto;
     resize: none;
+    margin-left: 0;
 }
 
 #previous-text {
@@ -12,7 +18,7 @@
 }
 
 #current-text {
-    color: grey;
+    color: burlywood;
     white-space: pre-wrap;
 }
 
@@ -20,4 +26,13 @@
     height: 300px;
     border: solid;
     overflow: scroll;
+}
+
+#clearButton {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+#title {
+    margin-top: 50px;
 }

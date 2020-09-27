@@ -4,14 +4,14 @@
 <link rel="stylesheet" href="style.css">
 
 <body>
-    <h1>
-        ZenWriter v1!
+    <h1 id="title">
+        Zen Writer
     </h1>
     <div>
         <!-- <input id="input-field" onkeyup="updateText()" type="text" /> -->
-        <textarea id="input-field" onkeyup="updateText()" rows="1" cols="60" name="description"></textarea>
+        <textarea id="input-field" onkeyup="updateText()"spellcheck="false" rows="1" cols="60" name="description"></textarea>
     </div>
-    <button onclick="clearText()">Clear text</button>
+    <button id="clearButton" onclick="clearText()">Clear text</button>
     <div id="all-text">
         <div>
             <div id="previous-text" disabled />
