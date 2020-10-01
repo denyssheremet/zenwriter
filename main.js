@@ -39,7 +39,6 @@ function calculateScore() {
         wordList.length--;
     }
     var word = wordList[wordList.length - 1];
-    console.log(word);
 
     words++;
     if (word.length < 3) { checkShortWord(word); } else {
@@ -52,9 +51,7 @@ function calculateScore() {
 
 function checkShortWord(word) {
     if (word === "I") { return; }
-    console.log("not I");
     if (shortWords.includes(word.toLowerCase())) { return; }
-    console.log("also not a short word");
     mistakes++;
 }
 
@@ -108,5 +105,4 @@ function clearText() {
 
 function toggleHardcoreMode() {
     hardcoreMode = !hardcoreMode;
-    console.log(hardcoreMode);
 }
