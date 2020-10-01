@@ -8,12 +8,14 @@ var allTextArea;
 var inputField;
 var words = 0;
 var mistakes = 0;
+var shortWords = ["a", "of", "to", "in", "it", "is", "be", "as", "at", "so", "we", "he", "by", "or", "on", "do", "if", "me", "my", "up", "an", "go", "no", "us", "am"]
 
 window.addEventListener('load', function() {
     div = document.getElementById('current-text');
     currentArea = document.getElementById("current-text");
     previousArea = document.getElementById("previous-text");
     input = document.getElementById('input-field');
+    input.focus();
     allTextArea = document.getElementById("all-text");
     inputField = document.getElementById("input-field");
     input.onkeydown = function() {
@@ -36,15 +38,24 @@ function calculateScore() {
     if (wordList[wordList.length - 1] == "") {
         wordList.length--;
     }
-    console.log(wordList);
     var word = wordList[wordList.length - 1];
     console.log(word);
 
     words++;
-    if (!lang.check(word)) { mistakes++; }
+    if (word.length < 3) { checkShortWord(word); } else {
+        if (!lang.check(word)) { mistakes++; }
+    }
 
     document.getElementById("wordCount").innerHTML = words;
     document.getElementById("score").innerHTML = wordList.length - (mistakes * 4);
+}
+
+function checkShortWord(word) {
+    if (word === "I") { return; }
+    console.log("not I");
+    if (shortWords.includes(word.toLowerCase())) { return; }
+    console.log("also not a short word");
+    mistakes++;
 }
 
 
