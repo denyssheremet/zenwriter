@@ -4,6 +4,7 @@ var hardcoreMode = false;
 var div;
 var words = 0;
 var mistakes = 0;
+var score = 0;
 
 window.addEventListener('load', function() {
     div = document.getElementById('current-text');
@@ -15,18 +16,23 @@ var lang = BJSpell(dictionary, function() {});
 // check.addEventListener('click', function() {
 function spellCheck() {
     console.log("checking spelling...");
-    var innerText = div.innerText;
-    var text = innerText.split(/\s/);
+    var text = div.innerText;
+    // text = text.replace(/[.,\/#!?"'@+$%\^&\*;:{}[]=\-_`~()]/g, "");
+    text = text.replace(/[.,\/#!?"'@+$%\^&\*;:{}=\-_`~()]/g, "");
+
+    var wordList = text.split(/\s/);
 
     words = 0;
     mistakes = 0;
-    text.map(function(word) {
+    wordList.map(function(word) {
         var correct = lang.check(word);
         console.log(word + correct);
         words++;
         if (!correct) { mistakes++; }
         console.log("Words " + words + "Mistakes: " + mistakes);
     })
+    score = words - (mistakes * 3);
+    document.getElementById("score").innerHTML = score;
 }
 
 
@@ -68,6 +74,7 @@ function clearCurrent(currentArea, previousArea) {
     currentArea.innerHTML = "";
 
     // reset score
+    score = 0;
     words = 0;
     mistakes = 0;
 }
