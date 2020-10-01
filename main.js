@@ -1,5 +1,34 @@
 var myVar;
 var previousText = "";
+var hardcoreMode = false;
+var div;
+var words = 0;
+var mistakes = 0;
+
+window.addEventListener('load', function() {
+    div = document.getElementById('current-text');
+});
+
+var dictionary = 'https://rawcdn.githack.com/maheshmurag/bjspell/master/dictionary.js/en_US.js';
+var lang = BJSpell(dictionary, function() {});
+
+// check.addEventListener('click', function() {
+function spellCheck() {
+    console.log("checking spelling...");
+    var innerText = div.innerText;
+    var text = innerText.split(/\s/);
+
+    words = 0;
+    mistakes = 0;
+    text.map(function(word) {
+        var correct = lang.check(word);
+        console.log(word + correct);
+        words++;
+        if (!correct) { mistakes++; }
+        console.log("Words " + words + "Mistakes: " + mistakes);
+    })
+}
+
 
 function updateText() {
     // updates the text that is visible in the divs below the input field
@@ -13,9 +42,12 @@ function updateText() {
     // scroll down
     allTextArea.scrollTop = allTextArea.scrollHeight;;
 
+    // spell check
+    spellCheck();
+
     // stop previous timer and start a new one
     clearTimeout(myVar);
-    myVar = setTimeout(function () { clearCurrent(currentArea, previousArea); }, 1000);  // game over if there is no new input in X milliseconds
+    myVar = setTimeout(function() { clearCurrent(currentArea, previousArea); }, 1000); // game over if there is no new input in X milliseconds
 
 }
 
@@ -34,6 +66,10 @@ function clearCurrent(currentArea, previousArea) {
     // remove text from current field
     document.getElementById("input-field").value = "";
     currentArea.innerHTML = "";
+
+    // reset score
+    words = 0;
+    mistakes = 0;
 }
 
 function clearText() {
@@ -42,4 +78,9 @@ function clearText() {
     document.getElementById("input-field").value = "";
     document.getElementById("current-text").innerHTML = "";
     document.getElementById("previous-text").innerHTML = "";
+}
+
+function toggleHardcoreMode() {
+    hardcoreMode = !hardcoreMode;
+    console.log(hardcoreMode);
 }

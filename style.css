@@ -36,3 +36,11 @@
 #title {
     margin-top: 50px;
 }
+
+.correct {
+    border-bottom: 2px solid green;
+}
+
+.misspelled {
+    border-bottom: 2px solid red;
+}

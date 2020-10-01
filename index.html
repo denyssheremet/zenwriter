@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
-<script src="main.js"> </script>
-<link rel="stylesheet" href="style.css">
+
+<head>
+    <script src="https://rawcdn.githack.com/maheshmurag/bjspell/master/BJSpell.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
     <h1 id="title">
@@ -9,9 +13,10 @@
     </h1>
     <div>
         <!-- <input id="input-field" onkeyup="updateText()" type="text" /> -->
-        <textarea id="input-field" onkeyup="updateText()"spellcheck="false" rows="1" cols="60" name="description"></textarea>
+        <textarea id="input-field" onkeyup="updateText()" spellcheck="false" rows="1" cols="60" name="description"></textarea>
     </div>
     <button id="clearButton" onclick="clearText()">Clear text</button>
+    <button id="hardcoreButton" onclick="toggleHardcoreMode()">HARDCORE MODE</button>
     <div id="all-text">
         <div>
             <div id="previous-text" disabled />
