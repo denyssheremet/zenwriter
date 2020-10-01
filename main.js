@@ -6,7 +6,8 @@ var currentArea;
 var previousArea;
 var allTextArea;
 var inputField;
-
+var words = 0;
+var mistakes = 0;
 
 window.addEventListener('load', function() {
     div = document.getElementById('current-text');
@@ -28,45 +29,37 @@ window.addEventListener('load', function() {
 var dictionary = 'https://rawcdn.githack.com/maheshmurag/bjspell/master/dictionary.js/en_US.js';
 var lang = BJSpell(dictionary, function() {});
 
-
-function spellCheck() {
-    console.log("checking spelling...");
-
-    calculateScore();
-}
-
-function calculateScore(final = false) {
+function calculateScore() {
     var text = div.innerText;
     text = text.replace(/[.,\/#!?"@+$%\^&\*;:{}=\-_`~()]/g, "");
-    var wordList = text.split(/\s/);
-
-    if (!final) {
-        wordList = wordList.slice(0, wordList.length - 1)
+    var wordList = text.split(" ");
+    if (wordList[wordList.length - 1] == "") {
+        wordList.length--;
     }
+    console.log(wordList);
+    var word = wordList[wordList.length - 1];
+    console.log(word);
 
-    var mistakes = 0;
-    wordList.map(function(word) {
-        var correct = lang.check(word);
-        console.log(word + correct);
-        if (!correct) { mistakes++; }
-        console.log("Words " + wordList.length + "Mistakes: " + mistakes);
-    })
-    document.getElementById("wordCount").innerHTML = wordList.length;
-    document.getElementById("score").innerHTML = wordList.length - (mistakes * 3);
+    words++;
+    if (!lang.check(word)) { mistakes++; }
+
+    document.getElementById("wordCount").innerHTML = words;
+    document.getElementById("score").innerHTML = wordList.length - (mistakes * 4);
 }
 
 
-function updateText() {
+function updateText(event) {
     // updates the text that is visible in the divs below the input field
-
 
     currentArea.innerHTML = inputField.value;
 
     // scroll down
     allTextArea.scrollTop = allTextArea.scrollHeight;;
 
-    // spell check
-    spellCheck();
+    // calculate score
+    if (event.keyCode == 32) {
+        calculateScore();
+    }
 
     // stop previous timer and start a new one
     clearTimeout(myVar);
@@ -76,8 +69,8 @@ function updateText() {
 
 function clearCurrent() {
     // sets the score to zero and moves the text you've written into the backlog
-
-    alert("Your score was: " + calculateScore(final = true));
+    calculateScore();
+    alert("Your score was: " + document.getElementById("score").innerHTML);
 
     previousText += inputField.value;
     previousText += "\r____\r\r";
@@ -86,6 +79,12 @@ function clearCurrent() {
     // remove text from current field
     inputField.value = "";
     currentArea.innerHTML = "";
+
+    // remove score count
+    words = 0;
+    mistakes = 0;
+    document.getElementById("wordCount").innerHTML = 0;
+    document.getElementById("score").innerHTML = 0;
 }
 
 function clearText() {
