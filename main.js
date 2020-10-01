@@ -2,9 +2,6 @@ var myVar;
 var previousText = "";
 var hardcoreMode = false;
 var div;
-var words = 0;
-var mistakes = 0;
-var score = 0;
 
 window.addEventListener('load', function() {
     div = document.getElementById('current-text');
@@ -13,26 +10,30 @@ window.addEventListener('load', function() {
 var dictionary = 'https://rawcdn.githack.com/maheshmurag/bjspell/master/dictionary.js/en_US.js';
 var lang = BJSpell(dictionary, function() {});
 
-// check.addEventListener('click', function() {
+
 function spellCheck() {
     console.log("checking spelling...");
-    var text = div.innerText;
-    // text = text.replace(/[.,\/#!?"'@+$%\^&\*;:{}[]=\-_`~()]/g, "");
-    text = text.replace(/[.,\/#!?"'@+$%\^&\*;:{}=\-_`~()]/g, "");
 
+    document.getElementById("score").innerHTML = calculateScore();
+}
+
+function calculateScore(final = false) {
+    var text = div.innerText;
+    text = text.replace(/[.,\/#!?"@+$%\^&\*;:{}=\-_`~()]/g, "");
     var wordList = text.split(/\s/);
 
-    words = 0;
-    mistakes = 0;
+    if (!final) {
+        wordList = wordList.slice(0, wordList.length - 1)
+    }
+
+    var mistakes = 0;
     wordList.map(function(word) {
         var correct = lang.check(word);
         console.log(word + correct);
-        words++;
         if (!correct) { mistakes++; }
-        console.log("Words " + words + "Mistakes: " + mistakes);
+        console.log("Words " + wordList.length + "Mistakes: " + mistakes);
     })
-    score = words - (mistakes * 3);
-    document.getElementById("score").innerHTML = score;
+    return wordList.length - (mistakes * 3);
 }
 
 
@@ -60,7 +61,7 @@ function updateText() {
 function clearCurrent(currentArea, previousArea) {
     // sets the score to zero and moves the text you've written into the backlog
 
-    alert("Time's up bitches!");
+    alert("Your score was: " + calculateScore(final = true));
 
     // put text from current into previous
     var inputField = document.getElementById("input-field");
@@ -72,11 +73,6 @@ function clearCurrent(currentArea, previousArea) {
     // remove text from current field
     document.getElementById("input-field").value = "";
     currentArea.innerHTML = "";
-
-    // reset score
-    score = 0;
-    words = 0;
-    mistakes = 0;
 }
 
 function clearText() {
